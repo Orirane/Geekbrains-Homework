@@ -56,7 +56,7 @@ public class Main {
         while (d == 0){
             d = giveRandom();
         }
-        System.out.println("Value a: " + a + "\n Value b: " + b + "\n Value c: " + c + "\n Value d:" + d );
+       // System.out.println("Value a: " + a + "\n Value b: " + b + "\n Value c: " + c + "\n Value d:" + d );
         return (a * (b + ((double) c / d)));
 
     }
