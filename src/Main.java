@@ -1,6 +1,8 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Main {
+    public static Random random;
 
     public static void main(String[] args) {
         //Barely had time to do even non starred exercises, so didn't bother making them one-size-fit-all,
@@ -15,6 +17,9 @@ public class Main {
         multiplyArray();
         //Exercise 4
         fillDiagonal();
+        //Exercise 5
+        findMinMax(generateArray(14, -100, 100));
+
 
 
     }
@@ -58,5 +63,40 @@ public class Main {
             }
             System.out.println();
         } */
+    }
+    public static void findMinMax(int[] arr){
+        int min = 0;
+        int max = 0;
+        int i = 0;
+        for (int element : arr) {
+            if( i == 0){
+                min = element;
+                max = element;
+                i++;
+            }
+            min = (element < min) ? element : min;
+            max = (element > max) ? element : max;
+        }
+        System.out.println("min is: " + min + "\n max is : " + max);
+        System.out.println("Input array is: " + Arrays.toString(arr));
+    }
+
+    public static int[] generateArray(int size, int min, int max){
+        int[] arr = new int[size];
+        for (int i = 0; i < arr.length ; i++) {
+            arr[i] = giveRandom(min, max);
+
+        }
+        return arr;
+    }
+    // returns random number between int min and int max------------
+    public static int giveRandom(int min, int max){
+        random = new Random();
+        return random.nextInt(max + 1 - min) + min;
+    }
+    // returns random positive number up to limit------------
+    public static int giveRandom(int limit){
+        random = new Random();
+        return random.nextInt(limit + 1);
     }
 }
