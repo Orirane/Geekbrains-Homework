@@ -160,7 +160,6 @@ public class Main {
             x = xclosetowin[1];
             y = xclosetowin[2];
         } else {
-            System.out.println("it's me! elif 4!");
             outerloop:
             for (int j = 0; j < SIZE; j++) {
                 for (int i = 0; i < SIZE; i++) {
@@ -277,7 +276,6 @@ public class Main {
         }
         if (numberOfSpaces == 1 && numberOfSymbols == (SIZE - 1)) {
             dotIndex[0] = 'y';
-            System.out.println(symbol + " близок к победе по левой диагонали");
             return dotIndex;
         }
         numberOfSymbols = 0;
@@ -298,7 +296,6 @@ public class Main {
             y++;
         }
         if (numberOfSpaces == 1 && numberOfSymbols == (SIZE - 1)) {
-            System.out.println(symbol + " близок к победе по правой диагонали");
             dotIndex[0] = 'y';
             return dotIndex;
         }
