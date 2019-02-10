@@ -7,6 +7,14 @@ public class StrayCat extends Cat implements ISeekFood {
     public StrayCat(){
         super(giveRandom(300, 500), giveRandom(8, 35),  + ((double)giveRandom(15,40)/10), name);
     }
+
+    /* seekFood is a method which prints in console the result of the animal's attempt to find food.
+     * abilityModifier represents animal's inherit skill at finding food, high modifier results
+     * in better chances of success
+     * difficultyClass represents difficulty of the given task, which in this case is rather low.
+     * rollResult rolls 1d20 and adds to it ability modifier, if rollResult is greater than difficultyClass - attempt
+     * succeeds, the exact result of the succeeded roll depends on the exact value of rollResult. The higher the better.
+     */
     public void seekFood() {
         int abilityModifier = 7;
         Random random = new Random();

@@ -9,7 +9,6 @@ public class Dog extends Animal {
     Dog(int runLimit, int swimLimit, double jumpOverLimit, String name){
         super(runLimit, swimLimit, jumpOverLimit, name);
     }
-
     @Override
     public void printInfo() {
         super.printInfo();
