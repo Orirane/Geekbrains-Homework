@@ -4,7 +4,7 @@ class Course {
     Course(){
         for (int i = 0; i < obstacleArray.length ; i++) {
             switch (Randomize.giveRandom(2)){
-                case 0: obstacleArray[i] = new SprintCourse(Randomize.giveRandom(10, 500));
+                case 0: obstacleArray[i] = new Road(Randomize.giveRandom(10, 500));
                         break;
                 case 1: obstacleArray[i] = new Wall(Randomize.giveRandom(3));
                         break;
