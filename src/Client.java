@@ -1,20 +1,10 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
+import java.time.LocalTime;
 
 public class Client extends JFrame {
 
@@ -24,10 +14,10 @@ public class Client extends JFrame {
     private DataOutputStream outputStream;
     private DataInputStream inputStream;
 
-    public Client() {
-        initConnection();
-        initGui();
-        initReceiver();
+    public Client(){
+            initConnection();
+            initGui();
+            initReceiver();
     }
 
     private void initReceiver() {
@@ -35,10 +25,13 @@ public class Client extends JFrame {
             while (true) {
                 try {
                     String echoMessage = inputStream.readUTF();
-                    outputTextArea.append(echoMessage);
+                    String timestamp = LocalTime.now().toString().substring(0, LocalTime.now().toString().indexOf("."));
+                    outputTextArea.append("["+timestamp+ "] Server:  " +echoMessage + "\n");
 
                 } catch (IOException e) {
                     e.printStackTrace();
+                    System.exit(-1);
+                    break;
                 }
             }
         });
@@ -55,15 +48,21 @@ public class Client extends JFrame {
             System.out.println("connection initialized");
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(-1);
+
         }
     }
 
     private void processMessage() {
         if (!inputTextField.getText().equals("")) {
             String message = inputTextField.getText();
-            outputTextArea.append(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime()) + "\n" + message + "\n");
+            String timestamp = LocalTime.now().toString().substring(0, LocalTime.now().toString().indexOf("."));
+            outputTextArea.append("["+timestamp+ "] Client:  " + message + "\n");
             inputTextField.setText("");
             sendMessage(message);
+            if (message.equalsIgnoreCase("/end")){
+                System.exit(0);
+            }
         }
 
     }
@@ -91,14 +90,14 @@ public class Client extends JFrame {
 
         panel.add(new JScrollPane(outputTextArea));
 
-        outputTextArea.setBackground(new Color(51, 153, 255));
+        outputTextArea.setBackground(new Color(255, 255, 255, 255));
         outputTextArea.setEditable(false);     //чтобы нельзя было печатать текст в поле
 
 
         JPanel panel1 = new JPanel();
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.X_AXIS));
 
-        inputTextField.setBackground(new Color(255, 204, 51));
+        inputTextField.setBackground(new Color(223, 222, 223, 255));
 
         JButton button = new JButton("Send");
 
@@ -106,9 +105,7 @@ public class Client extends JFrame {
         panel1.add(button);
 
         //нажатие кнопки
-        button.addActionListener(e -> {
-            processMessage();
-        });
+        button.addActionListener(e -> processMessage());
 
         //нажание Enter
         inputTextField.addActionListener(e -> processMessage());
