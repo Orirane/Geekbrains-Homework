@@ -16,9 +16,16 @@ public class Main {
                     "+7(997)"+giveRandom(100, 999)+"-"+giveRandom(10, 99)+"-"+giveRandom(10, 99));
 
         }
-
+        newBook.add("Vorontsov", "+7(942)487-36-31");
+        newBook.add("Vorontsov", "+7(942)870-28-33");
+        newBook.add("Vorontsov", "+7(942)487-36-13");
+        System.out.println(newBook.get("Vorontsov")+"\n");
+        newBook.removeNumber("Vorontsov", "+7(942)870-28-33");
+        System.out.println(newBook.get("Vorontsov")+"\n");
         for (String name: names) {
-            System.out.println(newBook.get(name)+"\n");
+            if (!newBook.get(name).contains("null") && !newBook.get(name).contains("There's no such entry")){
+                System.out.println(newBook.get(name)+"\n");
+            }
         }
         //numberOfApperances();
     }
