@@ -1,0 +1,6 @@
+
+out/production/Geekbrains-Homework/META-INF/Geekbrains-Homework.kotlin_module
+*.class
+*.class
+.idea/workspace.xml
+*.xml
