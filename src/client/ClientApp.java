@@ -81,11 +81,12 @@ public class ClientApp extends JFrame {
     private void reconnect() {
         outputTextArea.append("Connection to the server lost");
         for (int i = 0; i < 10; i++) {
-            outputTextArea.append("Trying to re-establish connection: attempt " + i);
+            outputTextArea.append("Trying to re-establish connection: attempt " + i + "\n");
             try {
                 Thread.sleep(2000);
                 initConnection();
                 if (socket.isConnected()){
+                    sendMessage(clientName);
                     return;
                 }
             } catch (InterruptedException ie) {
@@ -160,6 +161,7 @@ public class ClientApp extends JFrame {
         authButton.addActionListener(e -> {
             initConnection();
             initReceiver();
+            clientName = loginField.getText();
             sendMessage(loginField.getText());
             authPanel.setVisible(false);
             buttonPanel.setVisible(true);
