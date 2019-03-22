@@ -74,12 +74,11 @@ public class ClientApp extends JFrame {
             System.out.println("sent message::" + message);
             outputStream.writeUTF(message);
         } catch (IOException e) {
-            reconnect();
             e.printStackTrace();
         }
     }
     private void reconnect() {
-        outputTextArea.append("Connection to the server lost");
+        outputTextArea.append("Connection to the server lost\n");
         for (int i = 0; i < 10; i++) {
             outputTextArea.append("Trying to re-establish connection: attempt " + i + "\n");
             try {
@@ -87,6 +86,7 @@ public class ClientApp extends JFrame {
                 initConnection();
                 if (socket.isConnected()){
                     sendMessage(clientName);
+                    outputTextArea.setText("");
                     return;
                 }
             } catch (InterruptedException ie) {
