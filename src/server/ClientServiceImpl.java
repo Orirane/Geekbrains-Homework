@@ -22,7 +22,7 @@ public class ClientServiceImpl implements ClientService {
                 String message = client.getIs().readUTF();
                 System.out.println(String.format("received message '%s' to '%s'", message, client));
                 String[] msgArray =  message.split(" ");
-                if (!msgArray[0].equals("/w")){
+                if (!msgArray[0].equals("/w") || msgArray.length <=1){
                 messageService.sendMessages(client.getLogin() + "::" + message);
                 }else {
                     Client whisperTarget = clientStorage.getClient(msgArray[1]);

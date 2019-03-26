@@ -31,12 +31,15 @@ public class ClientApp extends JFrame {
     }
 
     private void initReceiver() {
+        ChatLogger.backupLogs();
+        ChatLogger.clearLogs();
         Thread thread = new Thread(() -> {
             while (true) {
                 try {
                     String echoMessage = inputStream.readUTF();
                     System.out.println("received message::" + echoMessage);
                     outputTextArea.append(echoMessage);
+                    ChatLogger.writeToLogs(echoMessage);
 
                 } catch (IOException e) {
                     try{socket.close();}catch (IOException e1){}
@@ -66,6 +69,7 @@ public class ClientApp extends JFrame {
             String message = inputTextField.getText();
             inputTextField.setText("");
             sendMessage(message);
+
         }
 
     }

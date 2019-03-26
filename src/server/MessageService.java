@@ -2,10 +2,11 @@ package server;
 
 import server.model.Client;
 
-import java.io.IOException;
+import java.io.*;
 
 public class MessageService {
     private final ClientStorage clientStorage;
+    private final ChatLogger logs = new ChatLogger();
 
     public MessageService(ClientStorage clientStorage) {
         this.clientStorage = clientStorage;
@@ -15,7 +16,10 @@ public class MessageService {
         clientStorage.getClients().forEach(client -> {
             try {
                 System.out.println(String.format("sending message '%s' to '%s'", message, client));
+                ChatLogger.writeToLogs(message);
                 client.getOs().writeUTF(message + "\n");
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -38,5 +42,23 @@ public class MessageService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+    public synchronized void sendTheEntireChatHistoryWhatCouldGoWrong(Client toClient){
+        System.out.println("Sending chat history to "+toClient.getLogin());
+        try {
+            for (String line: ChatLogger.getChatHistory()) {
+                if (line != null){
+                    toClient.getOs().writeUTF(line+"\n");
+                }
+
+            }
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+            System.out.println("Failed to send chat history to" + toClient.getLogin());
+        }
+    }
+
 }

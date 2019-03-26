@@ -24,6 +24,7 @@ public class ChatServer {
                 Client client = new Client(is.readUTF(), is, os);
                 System.out.println("client connected::" + client + "::" + socket);
                 messageService.sendMessages("SYSTEM:: "+client.getLogin()+" has joined the chat.");
+                messageService.sendTheEntireChatHistoryWhatCouldGoWrong(client);
                 clientStorage.addClient(client);
                 new Thread(() -> new ClientServiceImpl(client, messageService, clientStorage)
                         .processMessage()).start();
