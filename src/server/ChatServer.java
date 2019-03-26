@@ -1,12 +1,12 @@
 package server;
 
+import server.model.Client;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import server.model.Client;
 
 public class ChatServer {
     private static ClientStorage clientStorage = new ClientStorage();

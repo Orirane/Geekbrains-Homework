@@ -2,7 +2,7 @@ package server;
 
 import server.model.Client;
 
-import java.io.*;
+import java.io.IOException;
 
 public class MessageService {
     private final ClientStorage clientStorage;

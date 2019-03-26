@@ -1,10 +1,10 @@
 package server;
 
+import server.model.Client;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import server.model.Client;
 
 public class ClientStorage {
     private static List<Client> clients = Collections.synchronizedList(new ArrayList<>());

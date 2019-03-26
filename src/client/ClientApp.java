@@ -1,20 +1,11 @@
 package client;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
 
 public class ClientApp extends JFrame {
 
@@ -76,7 +67,7 @@ public class ClientApp extends JFrame {
 
     private void sendMessage(String message) {
         try {
-           String[] msgArray = message.split(" ");
+            String[] msgArray = message.split(" ");
             if(!msgArray[0].equals("/w")){
                 System.out.println("sent message::" + message);
                 outputStream.writeUTF(message);
@@ -86,9 +77,9 @@ public class ClientApp extends JFrame {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
     }
-    }
-    private synchronized void reconnect() {
+    private void reconnect() {
         outputTextArea.append("Connection to the server is lost\n");
         for (int i = 0; i < 10; i++) {
             outputTextArea.append("Trying to re-establish connection: attempt " + i + "\n");

@@ -1,8 +1,8 @@
 package server;
 
-import java.io.IOException;
-
 import server.model.Client;
+
+import java.io.IOException;
 
 public class ClientServiceImpl implements ClientService {
     private final Client client;
