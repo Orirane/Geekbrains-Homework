@@ -21,10 +21,22 @@ public class ClientServiceImpl implements ClientService {
             while (true) {
                 String message = client.getIs().readUTF();
                 System.out.println(String.format("received message '%s' to '%s'", message, client));
-
+                String[] msgArray =  message.split(" ");
+                if (!msgArray[0].equals("/w")){
                 messageService.sendMessages(client.getLogin() + "::" + message);
+                }else {
+                    Client whisperTarget = clientStorage.getClient(msgArray[1]);
+                    Client whisperOrigin = clientStorage.getClient(msgArray[msgArray.length-1]);
+                    if(whisperTarget == null){
+                        messageService.sendWhisperClientDoesNotExist(message,whisperOrigin);
+                        return;
+                    }
+                    message.replace("/w", "");
+                    message.replace(msgArray[2], "");
+                    messageService.sendWhisper(message.substring(0, message.lastIndexOf(" ")), whisperTarget, whisperOrigin);
+                }
             }
-        } catch (IOException io) {
+            } catch (IOException io) {
             messageService.sendMessages("SYSTEM::" + client.getLogin() + " has left the chat.");
             clientStorage.removeClient(client);
             io.printStackTrace();

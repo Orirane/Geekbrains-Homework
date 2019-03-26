@@ -22,4 +22,13 @@ public class ClientStorage {
     public List<Client> getClients() {
         return clients;
     }
+
+    public Client getClient(String clientLogin){
+        for (Client client : clients) {
+            if (client.getLogin().equals(clientLogin)){
+                return client;
+            }
+        }
+        return null;
+    }
 }

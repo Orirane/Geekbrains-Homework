@@ -72,11 +72,17 @@ public class ClientApp extends JFrame {
 
     private void sendMessage(String message) {
         try {
-            System.out.println("sent message::" + message);
-            outputStream.writeUTF(message);
+           String[] msgArray = message.split(" ");
+            if(!msgArray[0].equals("/w")){
+                System.out.println("sent message::" + message);
+                outputStream.writeUTF(message);
+            }else{
+                System.out.println("sent whisper to "+msgArray[1] +"::" +message);
+                outputStream.writeUTF(message+" "+ clientName);
+            }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+    }
     }
     private synchronized void reconnect() {
         outputTextArea.append("Connection to the server is lost\n");
