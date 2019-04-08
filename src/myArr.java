@@ -10,19 +10,22 @@ public class myArr {
     public myArr(int size) {
         this.size = size;
         this.arr = new int[size];
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < size; i++) {
             arr[i] = getRandom(0, size);
         }
+
+        arrCopy = Arrays.copyOf(arr, size);
+
     }
 
     public void resetArray() {
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < size; i++) {
             this.arr[i] = arrCopy[i];
         }
     }
 
     public void arrToString() {
-        for (int i = 0; i < this.arr.length; i++) {
+        for (int i = 0; i < this.size; i++) {
             System.out.println(this.arr[i]);
         }
     }
@@ -78,6 +81,34 @@ public class myArr {
             }
         }
     }
+
+    public void sortSelect(){
+        int out, in, mark;
+        for(out=0;out<this.size;out++){
+            mark = out;
+            for(in = out+1;in<this.size;in++){
+                if (this.arr[in]< this.arr[mark]){
+                    mark = in;
+                }
+            }
+            change(out, mark);
+        }
+    }
+
+    public void sortInsert(){
+        int in, out;
+        for(out = 1;out < this.size; out++){
+            int temp = this.arr[out];
+            in = out;
+            while(in > 0 && this.arr[in-1] >=temp){
+                this.arr[in] = this.arr[in-1];
+                --in;
+            }
+            this.arr[in] = temp;
+        }
+    }
+
+
 
     private void change(int a, int b){
         int tmp = this.arr[a];
