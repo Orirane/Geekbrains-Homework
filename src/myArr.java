@@ -1,5 +1,4 @@
-import java.time.Duration;
-import java.time.Instant;
+import java.time.*;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -20,10 +19,8 @@ public class myArr {
 
     }
 
-    public void resetArray() {
-        for (int i = 0; i < size; i++) {
-            this.arr[i] = arrCopy[i];
-        }
+    void resetArray() {
+        if (size >= 0) System.arraycopy(arrCopy, 0, this.arr, 0, size);
     }
 
     public void arrToString() {
@@ -73,7 +70,7 @@ public class myArr {
     }
 
 
-    public void sortBubble(){
+    void sortBubble(){
         Instant start = Instant.now();
         int out, in;
         for (out = this.size - 1; out >= 1; out--) {
@@ -87,7 +84,7 @@ public class myArr {
         System.out.println("Bubble sort benchmark: " + Duration.between(start, end).toMillis());
     }
 
-    public void sortSelect(){
+    void sortSelect(){
         Instant start = Instant.now();
         int out, in, mark;
         for(out=0;out<this.size;out++){
@@ -103,7 +100,7 @@ public class myArr {
         System.out.println("Select sort benchmark: " + Duration.between(start, end).toMillis());
     }
 
-    public void sortInsert(){
+    void sortInsert(){
         Instant start = Instant.now();
         int in, out;
         for(out = 1;out < this.size; out++){
@@ -129,7 +126,7 @@ public class myArr {
 
 
     // returns random number between int min and int max
-    public static int getRandom(int min, int max) {
+    private static int getRandom(int min, int max) {
         Random random = new Random();
         return random.nextInt(max + 1 - min) + min;
     }
