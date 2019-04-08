@@ -1,3 +1,5 @@
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -72,6 +74,7 @@ public class myArr {
 
 
     public void sortBubble(){
+        Instant start = Instant.now();
         int out, in;
         for (out = this.size - 1; out >= 1; out--) {
             for(in = 0; in < out; in++) {
@@ -80,9 +83,12 @@ public class myArr {
                 }
             }
         }
+        Instant end = Instant.now();
+        System.out.println("Bubble sort benchmark: " + Duration.between(start, end).toMillis());
     }
 
     public void sortSelect(){
+        Instant start = Instant.now();
         int out, in, mark;
         for(out=0;out<this.size;out++){
             mark = out;
@@ -93,9 +99,12 @@ public class myArr {
             }
             change(out, mark);
         }
+        Instant end = Instant.now();
+        System.out.println("Select sort benchmark: " + Duration.between(start, end).toMillis());
     }
 
     public void sortInsert(){
+        Instant start = Instant.now();
         int in, out;
         for(out = 1;out < this.size; out++){
             int temp = this.arr[out];
@@ -106,6 +115,8 @@ public class myArr {
             }
             this.arr[in] = temp;
         }
+        Instant end = Instant.now();
+        System.out.println("Insert sort benchmark: " + Duration.between(start, end).toMillis());
     }
 
 
