@@ -81,7 +81,7 @@ public class myArr {
             }
         }
         Instant end = Instant.now();
-        System.out.println("Bubble sort benchmark: " + Duration.between(start, end).toMillis());
+        System.out.println("Bubble sort benchmark: " + Duration.between(start, end).toMillis()+ "ms");
     }
 
     void sortSelect(){
@@ -97,7 +97,7 @@ public class myArr {
             change(out, mark);
         }
         Instant end = Instant.now();
-        System.out.println("Select sort benchmark: " + Duration.between(start, end).toMillis());
+        System.out.println("Select sort benchmark: " + Duration.between(start, end).toMillis()+ "ms");
     }
 
     void sortInsert(){
@@ -113,7 +113,7 @@ public class myArr {
             this.arr[in] = temp;
         }
         Instant end = Instant.now();
-        System.out.println("Insert sort benchmark: " + Duration.between(start, end).toMillis());
+        System.out.println("Insert sort benchmark: " + Duration.between(start, end).toMillis()+ "ms");
     }
 
 

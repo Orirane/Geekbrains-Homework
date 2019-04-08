@@ -1,10 +1,9 @@
-import java.time.*;
-import java.util.Arrays;
+
 
 public class Main {
     static int[] arrCopy;
     public static void main(String[] args) {
-        myArr arr = new myArr(100000);
+        myArr arr = new myArr(1000000);
         arr.sortBubble();
         arr.resetArray();
         arr.sortInsert();
